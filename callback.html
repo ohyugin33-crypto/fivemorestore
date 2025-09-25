@@ -3,42 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <title>네이버 로그인 콜백</title>
-  <style>
-    body { font-family: Arial, sans-serif; text-align: center; padding: 50px; background: #f9f9f9; }
-    h1 { color: #03C75A; }
-    .box { background:#fff; border:1px solid #ddd; padding:20px; border-radius:8px; display:inline-block; }
-    code { background:#f4f4f4; padding:2px 4px; border-radius:4px; }
-  </style>
 </head>
-<body>
-  <h1>네이버 로그인 결과</h1>
-  <div class="box">
-    <p><strong>code:</strong> <code id="code">없음</code></p>
-    <p><strong>state:</strong> <code id="state">없음</code></p>
-  </div>
-
-  <h2>사용자 정보</h2>
-  <pre id="userInfo">불러오는 중...</pre>
+<body style="font-family:sans-serif; text-align:center; margin-top:50px;">
+  <h1 style="color:green;">네이버 로그인 콜백</h1>
+  <p>네이버 로그인 인증이 완료되었습니다.</p>
+  <p>아래는 네이버에서 전달된 파라미터입니다:</p>
+  <ul style="list-style:none;">
+    <li><b>code:</b> <span id="code">없음</span></li>
+    <li><b>state:</b> <span id="state">없음</span></li>
+  </ul>
+  <p style="margin-top:20px;">이 페이지는 검사 확인용 데모입니다.<br>실제 서비스에서는 이 <code>code</code> 값을 서버에서 네이버 토큰 API로 교환하여 사용자 정보를 가져옵니다.</p>
 
   <script>
     const params = new URLSearchParams(window.location.search);
-    const code = params.get("code");
-    const state = params.get("state");
-    document.getElementById("code").textContent = code || "없음";
-    document.getElementById("state").textContent = state || "없음";
-
-    if (code) {
-      fetch(`/.netlify/functions/naver-callback?code=${code}&state=${state}`)
-        .then(res => res.json())
-        .then(data => {
-          document.getElementById("userInfo").textContent = JSON.stringify(data, null, 2);
-        })
-        .catch(err => {
-          document.getElementById("userInfo").textContent = "에러: " + err.message;
-        });
-    } else {
-      document.getElementById("userInfo").textContent = "code 파라미터 없음";
-    }
+    document.getElementById("code").innerText = params.get("code") || "없음";
+    document.getElementById("state").innerText = params.get("state") || "없음";
   </script>
 </body>
 </html>

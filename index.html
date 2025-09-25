@@ -2,36 +2,16 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>파이브모어스토어 로그인</title>
-  <style>
-    body { font-family: Arial, sans-serif; text-align: center; padding-top: 80px; background: #f9f9f9; }
-    h1 { color: #333; }
-    .login-btn {
-      display: inline-block; background-color: #03C75A; color: white;
-      padding: 15px 30px; font-size: 18px; border-radius: 8px;
-      text-decoration: none; font-weight: bold;
-    }
-    .login-btn:hover { background-color: #029c47; }
-  </style>
+  <title>파이브모어스토어</title>
 </head>
-<body>
+<body style="text-align:center; font-family:sans-serif;">
   <h1>파이브모어스토어</h1>
   <p>아래 버튼을 눌러 네이버 아이디로 로그인하세요</p>
-
-  <a class="login-btn" id="naverLogin" href="#">네이버 로그인</a>
-
-  <script>
-    const clientId = "YOUR_CLIENT_ID"; // 네이버 개발자센터 Client ID
-    const redirectUri = encodeURIComponent("https://fivemorestore.netlify.app/callback.html");
-
-    function generateState(len=16) {
-      const chars="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-      return Array.from({length: len},()=>chars.charAt(Math.floor(Math.random()*chars.length))).join('');
-    }
-    const state = generateState();
-
-    document.getElementById("naverLogin").href =
-      `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${clientId}&redirect_uri=${redirectUri}&state=${state}`;
-  </script>
+  <a href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=nP3SeBpkMdfZbXFfc1s&redirect_uri=https%3A%2F%2Ffivemorestore.netlify.app%2Fcallback.html&state=1234">
+    <button style="background:#03C75A; color:white; font-size:18px; padding:10px 20px; border:none; border-radius:5px; cursor:pointer;">
+      네이버 로그인
+    </button>
+  </a>
+  <p style="margin-top:30px; font-size:12px; color:gray;">Powered by Netlify & GitHub Pages</p>
 </body>
 </html>
