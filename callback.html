@@ -16,13 +16,27 @@
   <div class="param">code: <span id="code" class="value"></span></div>
   <div class="param">state: <span id="state" class="value"></span></div>
 
-  <p>이 페이지는 검수 확인용입니다.<br>
-  실제 서비스에서는 이 <code>code</code> 값을 서버에서 네이버 토큰 API로 교환하여 사용자 정보를 가져옵니다.</p>
+  <h2>네이버 사용자 정보</h2>
+  <pre id="result"></pre>
 
   <script>
     const params = new URLSearchParams(window.location.search);
-    document.getElementById("code").textContent = params.get("code") || "없음";
-    document.getElementById("state").textContent = params.get("state") || "없음";
+    const code = params.get("code");
+    const state = params.get("state");
+
+    document.getElementById("code").textContent = code || "없음";
+    document.getElementById("state").textContent = state || "없음";
+
+    if (code) {
+      fetch(`/.netlify/functions/naver-callback?code=${code}&state=${state}`)
+        .then(res => res.json())
+        .then(data => {
+          document.getElementById("result").textContent = JSON.stringify(data, null, 2);
+        })
+        .catch(err => {
+          document.getElementById("result").textContent = "Error: " + err.message;
+        });
+    }
   </script>
 </body>
 </html>
