@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>네이버 로그인 콜백</title>
+    <style>
+      body { font-family: system-ui, sans-serif; max-width: 720px; margin: 40px auto; }
+      h1 { color: #03c75a; }
+      code { background: #f4f4f4; padding: 2px 4px; border-radius: 4px; }
+    </style>
+  </head>
+  <body>
+    <h1>네이버 로그인 콜백</h1>
+    <p>네이버 로그인 인증이 완료되었습니다.</p>
+    <p>아래는 네이버에서 전달된 파라미터입니다:</p>
+
+    <ul>
+      <li><strong>code</strong>: <code id="code">없음</code></li>
+      <li><strong>state</strong>: <code id="state">없음</code></li>
+    </ul>
+
+    <p>이 페이지는 검수 확인용 데모입니다.<br>
+       실제 서비스에서는 이 <code>code</code> 값을 서버에서 네이버 토큰 API로 교환하여 사용자 정보를 가져옵니다.</p>
+
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      document.getElementById("code").textContent = params.get("code") || "없음";
+      document.getElementById("state").textContent = params.get("state") || "없음";
+    </script>
+  </body>
+</html>
