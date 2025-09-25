@@ -3,21 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <title>네이버 로그인 콜백</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 40px; }
+    h1 { color: green; }
+    .param { margin: 10px 0; font-size: 18px; }
+    .value { font-weight: bold; color: #333; }
+  </style>
 </head>
-<body style="font-family:sans-serif; text-align:center; margin-top:50px;">
-  <h1 style="color:green;">네이버 로그인 콜백</h1>
+<body>
+  <h1>네이버 로그인 콜백</h1>
   <p>네이버 로그인 인증이 완료되었습니다.</p>
-  <p>아래는 네이버에서 전달된 파라미터입니다:</p>
-  <ul style="list-style:none;">
-    <li><b>code:</b> <span id="code">없음</span></li>
-    <li><b>state:</b> <span id="state">없음</span></li>
-  </ul>
-  <p style="margin-top:20px;">이 페이지는 검사 확인용 데모입니다.<br>실제 서비스에서는 이 <code>code</code> 값을 서버에서 네이버 토큰 API로 교환하여 사용자 정보를 가져옵니다.</p>
+  <div class="param">code: <span id="code" class="value"></span></div>
+  <div class="param">state: <span id="state" class="value"></span></div>
+
+  <p>이 페이지는 검수 확인용입니다.<br>
+  실제 서비스에서는 이 <code>code</code> 값을 서버에서 네이버 토큰 API로 교환하여 사용자 정보를 가져옵니다.</p>
 
   <script>
     const params = new URLSearchParams(window.location.search);
-    document.getElementById("code").innerText = params.get("code") || "없음";
-    document.getElementById("state").innerText = params.get("state") || "없음";
+    document.getElementById("code").textContent = params.get("code") || "없음";
+    document.getElementById("state").textContent = params.get("state") || "없음";
   </script>
 </body>
 </html>
